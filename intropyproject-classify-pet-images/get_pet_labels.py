@@ -45,11 +45,15 @@ def get_pet_labels(image_dir):
     filenames = listdir(image_dir)
     results_dic = dict()
     for idx in range(0, len(filenames), 1):
+        if filenames[idx].startswith("."):
+            continue
+
         if filenames[idx] not in results_dic:
             pet_image = filenames[idx]
             low_pet_image = pet_image.lower()
             word_list_pet_image = low_pet_image.split("_")
             pet_name = ""
+
             for word in word_list_pet_image:
                 if word.isalpha():
                     pet_name += word + " "
